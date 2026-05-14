@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+
+const projects = [
+  {
+    title: "Criticality-Aware Motion Planning",
+    description:
+      "Transformer-based trajectory scoring for autonomous vehicles using heterogeneous GNN criticality context.",
+    tags: ["Python", "Deep Learning", "GNN", "Motion Planning"],
+    href: "#",
+  },
+  {
+    title: "Personal Home Server Infrastructure",
+    description:
+      "Self-hosted infrastructure with Proxmox, Docker, Caddy, HTTPS, DNS, and service hosting.",
+    tags: ["Proxmox", "Docker", "Caddy", "DevOps"],
+    href: "/homelab",
+  },
+  {
+    title: "Scientific Computing with GANs and VAEs",
+    description:
+      "Research seminar project investigating generative models as surrogate models for solving complex PDEs.",
+    tags: ["GANs", "VAEs", "Scientific Computing", "Research"],
+    href: "#",
+  },
+];
+---
+
+<BaseLayout title="Projects">
+  <section class="mb-10">
+    <p class="text-sm font-semibold uppercase tracking-wider text-primary">Selected work</p>
+    <h1 class="mt-2 text-4xl font-bold">Projects</h1>
+    <p class="mt-4 max-w-2xl text-base-content/70">
+      A collection of academic, professional, and self-hosting projects focused on software engineering,
+      machine learning, autonomous systems, and infrastructure.
+    </p>
+  </section>
+
+  <section class="grid gap-6 md:grid-cols-2">
+    {projects.map((project) => (
+      <ProjectCard {...project} />
+    ))}
+  </section>
+</BaseLayout>

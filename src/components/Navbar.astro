@@ -1,0 +1,41 @@
+---
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/experience", label: "Experience" },
+  { href: "/skills", label: "Skills" },
+  { href: "/homelab", label: "Homelab" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-base-300 bg-base-100/90 backdrop-blur">
+  <div class="navbar mx-auto max-w-6xl px-4">
+    <div class="navbar-start">
+      <a href="/" class="text-lg font-bold tracking-tight">
+        Faid Rihan
+      </a>
+    </div>
+
+    <nav class="navbar-end hidden gap-2 md:flex">
+      {navItems.map((item) => (
+        <a href={item.href} class="btn btn-ghost btn-sm">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="navbar-end md:hidden">
+      <details class="dropdown dropdown-end">
+        <summary class="btn btn-ghost btn-sm">Menu</summary>
+        <ul class="menu dropdown-content z-[1] mt-3 w-52 rounded-box bg-base-200 p-2 shadow">
+          {navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </div>
+  </div>
+</header>

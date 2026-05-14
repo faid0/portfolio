@@ -1,0 +1,36 @@
+---
+import "../assets/app.css";
+import Navbar from "../components/Navbar.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Portfolio of Faid Rihan, M.Sc. Informatics student and software developer based in Munich.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Faid Rihan</title>
+  </head>
+
+  <body class="min-h-screen bg-base-100 text-base-content">
+    <Navbar />
+
+    <main class="mx-auto w-full max-w-6xl px-4 py-10 md:px-6">
+      <slot />
+    </main>
+
+    <footer class="border-t border-base-300 px-4 py-8 text-center text-sm text-base-content/60">
+      © {new Date().getFullYear()} Faid Rihan. Built with Astro, Tailwind CSS and daisyUI.
+    </footer>
+  </body>
+</html>

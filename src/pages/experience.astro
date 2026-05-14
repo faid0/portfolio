@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const experience = [
+  {
+    role: "Working Student, Software Developer",
+    company: "H&D GmbH",
+    period: "09/2024 - 04/2026",
+    points: [
+      "Developed backend features and microservices using Java and Rust.",
+      "Built REST, GraphQL, and gRPC APIs.",
+      "Worked with PostgreSQL, MongoDB, TypeScript, Vue, Keycloak, Docker, and Kubernetes.",
+    ],
+  },
+  {
+    role: "Technical Associate",
+    company: "Goldn Kiosk",
+    period: "06/2021 - 09/2024",
+    points: [
+      "Built the company's first website.",
+      "Developed custom accounting software.",
+      "Supported POS systems, billing, inventory, and technical troubleshooting.",
+    ],
+  },
+];
+---
+
+<BaseLayout title="Experience">
+  <section class="mb-10">
+    <p class="text-sm font-semibold uppercase tracking-wider text-primary">Professional background</p>
+    <h1 class="mt-2 text-4xl font-bold">Experience</h1>
+  </section>
+
+  <section class="space-y-6">
+    {experience.map((item) => (
+      <article class="card bg-base-200">
+        <div class="card-body">
+          <div class="flex flex-col justify-between gap-2 md:flex-row">
+            <div>
+              <h2 class="card-title">{item.role}</h2>
+              <p class="text-primary">{item.company}</p>
+            </div>
+            <p class="text-sm text-base-content/60">{item.period}</p>
+          </div>
+
+          <ul class="mt-4 list-disc space-y-2 pl-5 text-base-content/70">
+            {item.points.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>

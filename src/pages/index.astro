@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+---
+
+<BaseLayout
+  title="Portfolio"
+  description="Faid Rihan — M.Sc. Informatics student at TUM, software developer, and ML/autonomous systems enthusiast."
+>
+  <section class="hero min-h-[70vh]">
+    <div class="hero-content px-0 text-left">
+      <div class="max-w-3xl">
+        <div class="badge badge-primary badge-outline mb-5">
+          M.Sc. Informatics Student · Software Developer
+        </div>
+
+        <h1 class="text-5xl font-bold leading-tight md:text-7xl">
+          I build backend systems, full-stack features, and ML-driven software.
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-lg text-base-content/70">
+          I'm Faid Rihan, an Informatics student at the Technical University of Munich with experience in Java,
+          Rust, Python, TypeScript, APIs, databases, cloud infrastructure, and autonomous systems.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/projects" class="btn btn-primary">View Projects</a>
+          <a href="/homelab" class="btn btn-outline">See Homelab</a>
+          <a href="/contact" class="btn btn-ghost">Contact Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="mb-8">
+      <p class="text-sm font-semibold uppercase tracking-wider text-primary">Featured work</p>
+      <h2 class="mt-2 text-3xl font-bold">Projects that define my profile</h2>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      <ProjectCard
+        title="Criticality-Aware Motion Planning"
+        description="Bachelor thesis on Transformer-based trajectory scoring for autonomous-vehicle motion planning using heterogeneous GNN context."
+        tags={["Python", "Transformers", "GNNs", "Autonomous Driving"]}
+        href="/projects"
+      />
+
+      <ProjectCard
+        title="Personal Home Server Infrastructure"
+        description="Self-hosted infrastructure using Proxmox, Caddy, Docker, Nextcloud, HTTPS, DNS, and reverse proxying."
+        tags={["Proxmox", "Docker", "Caddy", "Self-hosting"]}
+        href="/homelab"
+      />
+    </div>
+  </section>
+
+  <section class="grid gap-6 py-12 md:grid-cols-3">
+    <div class="card bg-base-200">
+      <div class="card-body">
+        <h3 class="card-title">Backend & APIs</h3>
+        <p class="text-base-content/70">Java, Rust, REST, GraphQL, gRPC, microservices, Keycloak.</p>
+      </div>
+    </div>
+
+    <div class="card bg-base-200">
+      <div class="card-body">
+        <h3 class="card-title">Data & Infrastructure</h3>
+        <p class="text-base-content/70">PostgreSQL, MongoDB, Redis, Docker, Kubernetes, AWS, Caddy.</p>
+      </div>
+    </div>
+
+    <div class="card bg-base-200">
+      <div class="card-body">
+        <h3 class="card-title">ML & Autonomous Systems</h3>
+        <p class="text-base-content/70">Deep learning, GNNs, GANs, VAEs, motion planning, scientific computing.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
