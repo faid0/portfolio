@@ -1,27 +1,122 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const quickFacts = [
+  ["Based in", "Munich, Germany"],
+  ["Studying", "M.Sc. Informatics at TUM"],
+  ["Background", "Software development, infrastructure, and applied ML projects"],
+  ["Languages", "German, Arabic, English, Spanish"],
+];
+
+const principles = [
+  "Understand the problem before choosing tools.",
+  "Keep systems understandable and maintainable.",
+  "Prefer simple architecture until complexity is justified.",
+  "Learn by building, running, and improving real systems.",
+];
 ---
 
 <BaseLayout title="About">
-  <section class="max-w-3xl">
-    <p class="text-sm font-semibold uppercase tracking-wider text-primary">About me</p>
-    <h1 class="mt-2 text-4xl font-bold">Hi, I'm Faid.</h1>
+  <section class="page-section pt-8 md:pt-14">
+    <div class="grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-start">
+      <div class="max-w-3xl">
+        <p class="section-label">About me</p>
 
-    <div class="mt-6 space-y-4 text-base-content/70">
-      <p>
-        I'm an M.Sc. Informatics student at the Technical University of Munich and a software
-        developer based in Munich.
-      </p>
+        <h1 class="section-title">Hi, I'm Faid.</h1>
 
-      <p>
-        My interests are at the intersection of backend systems, full-stack development, cloud
-        infrastructure, machine learning, autonomous systems, and scientific computing.
-      </p>
+        <div class="muted mt-6 space-y-5 text-lg leading-8">
+          <p>
+            I'm an Informatics student at the Technical University of Munich and a software
+            developer based in Munich.
+          </p>
 
-      <p>
-        I enjoy building practical systems, understanding how things work under the hood, and
-        turning technical ideas into usable software.
-      </p>
+          <p>
+            I like working on software that has a meaningful impact beyond the code itself. In
+            projects with municipalities in Munich and across Germany, I have worked on services
+            that connect technical implementation with real public-sector needs.
+          </p>
+
+          <p>
+            Through university projects, professional work, and personal projects, I have worked
+            across backend systems, APIs, infrastructure, autonomous systems, and scientific
+            computing. I am still exploring which direction I want to specialize in, but I enjoy
+            projects that combine solid engineering with technically challenging problems.
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/projects" class="btn btn-primary">View projects</a>
+          <a href="/experience" class="btn btn-outline">Experience</a>
+        </div>
+      </div>
+
+      <aside class="surface-card">
+        <div class="surface-card-body">
+          <h2 class="card-title">Quick facts</h2>
+
+          <dl class="mt-4 space-y-4">
+            {
+              quickFacts.map(([label, value]) => (
+                <div>
+                  <dt class="text-sm font-medium text-base-content/60">{label}</dt>
+                  <dd class="mt-1 text-base leading-7 text-base-content/85">{value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <p class="section-label">How I work</p>
+        <h2 class="section-title">Practical, structured, and curious.</h2>
+      </div>
+
+      <div class="surface-card">
+        <div class="surface-card-body">
+          <ul class="space-y-4">
+            {
+              principles.map((principle) => (
+                <li class="flex gap-3 text-base leading-7 text-base-content/80">
+                  <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                  <span>{principle}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="surface-card">
+        <div class="surface-card-body">
+          <h2 class="card-title">What I am currently focusing on</h2>
+          <p class="muted mt-3 text-base leading-7">
+            I am continuing my Informatics studies at TUM while building a stronger profile around
+            software engineering, infrastructure, and applied machine learning. My current portfolio
+            itself is part of that: it is designed, built, deployed, and self-hosted on my own
+            setup.
+          </p>
+        </div>
+      </div>
+
+      <div class="surface-card">
+        <div class="surface-card-body">
+          <h2 class="card-title">Some personal notes</h2>
+          <p class="muted mt-3 text-base leading-7">
+            I enjoy anime, music, fiction, biographies, and team sports. NEFFEX is my favorite
+            artist, and I usually gravitate toward stories that feel energetic, motivating, or
+            focused on growth.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 </BaseLayout>

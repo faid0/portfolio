@@ -6,6 +6,34 @@ import ProjectCard from "../components/ProjectCard.astro";
 const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
 
 const featuredProjects = projects.filter((project) => project.data.featured).slice(0, 3);
+
+const profileHighlights = [
+  {
+    label: "Most recent work",
+    title: "Software Developer at H&D GmbH",
+    body: "Working student role from 09/2024 to 04/2026 with backend features, microservices, APIs, Java, Rust, and cloud-oriented tooling.",
+  },
+  {
+    label: "Academic route",
+    title: "M.Sc. Informatics at TUM",
+    body: "Master's program started in 04/2026 after completing the B.Sc. Informatics at TUM.",
+  },
+];
+
+const focusAreas = [
+  {
+    title: "Backend & APIs",
+    body: "Java, Rust, REST, GraphQL, gRPC, microservices, Keycloak and database-backed systems.",
+  },
+  {
+    title: "Infrastructure",
+    body: "Docker, Caddy, Proxmox, DNS, HTTPS, firewall rules and self-hosted deployment.",
+  },
+  {
+    title: "ML & Autonomous Systems",
+    body: "Deep learning, GNNs, GANs, VAEs, motion planning and scientific computing.",
+  },
+];
 ---
 
 <BaseLayout
@@ -37,6 +65,31 @@ const featuredProjects = projects.filter((project) => project.data.featured).sli
   <section class="page-section">
     <div class="mb-8 flex flex-col justify-between gap-3 md:flex-row md:items-end">
       <div>
+        <p class="section-label">At a glance</p>
+        <h2 class="section-title">Key experience</h2>
+      </div>
+
+      <a href="/experience" class="text-base text-primary hover:underline"> Full experience → </a>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      {
+        profileHighlights.map((item) => (
+          <div class="surface-card">
+            <div class="surface-card-body">
+              <p class="text-sm font-medium text-primary">{item.label}</p>
+              <h3 class="mt-2 text-xl font-semibold">{item.title}</h3>
+              <p class="muted mt-3 text-base leading-7">{item.body}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="mb-8 flex flex-col justify-between gap-3 md:flex-row md:items-end">
+      <div>
         <p class="section-label">Selected work</p>
         <h2 class="section-title">Featured projects</h2>
       </div>
@@ -50,27 +103,22 @@ const featuredProjects = projects.filter((project) => project.data.featured).sli
   </section>
 
   <section class="page-section">
+    <div class="mb-8">
+      <p class="section-label">Core areas</p>
+      <h2 class="section-title">What I build</h2>
+    </div>
+
     <div class="grid gap-5 md:grid-cols-3">
-      <div class="rounded-2xl border border-base-300 bg-base-100 p-6 shadow-sm">
-        <h3 class="text-xl font-semibold">Backend & APIs</h3>
-        <p class="muted mt-3 text-base leading-7">
-          Java, Rust, REST, GraphQL, gRPC, microservices, Keycloak and database-backed systems.
-        </p>
-      </div>
-
-      <div class="rounded-2xl border border-base-300 bg-base-100 p-6 shadow-sm">
-        <h3 class="text-xl font-semibold">Infrastructure</h3>
-        <p class="muted mt-3 text-base leading-7">
-          Docker, Caddy, Proxmox, DNS, HTTPS, firewall rules and self-hosted deployment.
-        </p>
-      </div>
-
-      <div class="rounded-2xl border border-base-300 bg-base-100 p-6 shadow-sm">
-        <h3 class="text-xl font-semibold">ML & Autonomous Systems</h3>
-        <p class="muted mt-3 text-base leading-7">
-          Deep learning, GNNs, GANs, VAEs, motion planning and scientific computing.
-        </p>
-      </div>
+      {
+        focusAreas.map((area) => (
+          <div class="surface-card">
+            <div class="surface-card-body">
+              <h3 class="text-xl font-semibold">{area.title}</h3>
+              <p class="muted mt-3 text-base leading-7">{area.body}</p>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>
