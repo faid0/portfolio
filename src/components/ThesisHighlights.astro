@@ -1,0 +1,59 @@
+<section class="not-prose my-10 space-y-8">
+  <div>
+    <h2 class="text-2xl font-semibold tracking-tight">Key results</h2>
+    <p class="muted mt-2 max-w-3xl text-base leading-7">
+      The model was evaluated as a trajectory-ranking surrogate for the Reactive Planner. The main
+      question was whether it could preserve the planner-induced candidate ordering.
+    </p>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div class="stats border border-base-300 bg-base-100 shadow-sm">
+      <div class="stat">
+        <div class="stat-title">Top-1 precision</div>
+        <div class="stat-value text-primary">0.79</div>
+        <div class="stat-desc">Best predicted candidate matches the true top candidate</div>
+      </div>
+    </div>
+
+    <div class="stats border border-base-300 bg-base-100 shadow-sm">
+      <div class="stat">
+        <div class="stat-title">Top-3 precision</div>
+        <div class="stat-value text-primary">0.90</div>
+        <div class="stat-desc">Predicted top candidates align well with planner ranking</div>
+      </div>
+    </div>
+
+    <div class="stats border border-base-300 bg-base-100 shadow-sm">
+      <div class="stat">
+        <div class="stat-title">NDCG@3</div>
+        <div class="stat-value text-primary">0.98</div>
+        <div class="stat-desc">Strong ranking quality near the top of the list</div>
+      </div>
+    </div>
+
+    <div class="stats border border-base-300 bg-base-100 shadow-sm">
+      <div class="stat">
+        <div class="stat-title">Median regret</div>
+        <div class="stat-value text-primary">0.00</div>
+        <div class="stat-desc">Typical selected trajectory matches the best-cost choice</div>
+      </div>
+    </div>
+
+    <div class="stats border border-base-300 bg-base-100 shadow-sm">
+      <div class="stat">
+        <div class="stat-title">ε-perfect selections</div>
+        <div class="stat-value text-primary">92.7%</div>
+        <div class="stat-desc">Selected candidate within 5% of the true best cost</div>
+      </div>
+    </div>
+
+    <div class="stats border border-base-300 bg-base-100 shadow-sm">
+      <div class="stat">
+        <div class="stat-title">Planner-level evaluation</div>
+        <div class="stat-value text-primary">86.3%</div>
+        <div class="stat-desc">359 of 416 evaluation scenarios passed</div>
+      </div>
+    </div>
+  </div>
+</section>

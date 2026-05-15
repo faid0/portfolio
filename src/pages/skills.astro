@@ -36,17 +36,19 @@ const skillGroups = [
   </section>
 
   <section class="grid gap-6 md:grid-cols-2">
-    {skillGroups.map((group) => (
-      <div class="card bg-base-200">
-        <div class="card-body">
-          <h2 class="card-title">{group.title}</h2>
-          <div class="flex flex-wrap gap-2">
-            {group.skills.map((skill) => (
-              <span class="badge badge-outline">{skill}</span>
-            ))}
+    {
+      skillGroups.map((group) => (
+        <div class="card bg-base-200">
+          <div class="card-body">
+            <h2 class="card-title">{group.title}</h2>
+            <div class="flex flex-wrap gap-2">
+              {group.skills.map((skill) => (
+                <span class="badge badge-outline">{skill}</span>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    ))}
+      ))
+    }
   </section>
 </BaseLayout>

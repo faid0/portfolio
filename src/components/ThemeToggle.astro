@@ -1,0 +1,81 @@
+<button
+  id="theme-toggle"
+  class="btn btn-ghost btn-circle"
+  type="button"
+  aria-label="Toggle theme"
+  title="Toggle theme"
+>
+  <svg
+    id="theme-icon-sun"
+    xmlns="http://www.w3.org/2000/svg"
+    class="hidden h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2"></path>
+    <path d="M12 20v2"></path>
+    <path d="m4.93 4.93 1.41 1.41"></path>
+    <path d="m17.66 17.66 1.41 1.41"></path>
+    <path d="M2 12h2"></path>
+    <path d="M20 12h2"></path>
+    <path d="m6.34 17.66-1.41 1.41"></path>
+    <path d="m19.07 4.93-1.41 1.41"></path>
+  </svg>
+
+  <svg
+    id="theme-icon-moon"
+    xmlns="http://www.w3.org/2000/svg"
+    class="hidden h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+  </svg>
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>("#theme-toggle");
+  const sun = document.querySelector<SVGElement>("#theme-icon-sun");
+  const moon = document.querySelector<SVGElement>("#theme-icon-moon");
+
+  const LIGHT_THEME = "corporate";
+  const DARK_THEME = "dark";
+
+  function getSystemTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? DARK_THEME : LIGHT_THEME;
+  }
+
+  function getActiveTheme() {
+    return localStorage.getItem("theme") || getSystemTheme();
+  }
+
+  function updateIcon(theme: string) {
+    sun?.classList.toggle("hidden", theme !== LIGHT_THEME);
+    moon?.classList.toggle("hidden", theme !== DARK_THEME);
+  }
+
+  function applyTheme(theme: string, save = false) {
+    document.documentElement.setAttribute("data-theme", theme);
+    updateIcon(theme);
+
+    if (save) {
+      localStorage.setItem("theme", theme);
+    }
+  }
+
+  applyTheme(getActiveTheme());
+
+  button?.addEventListener("click", () => {
+    const nextTheme = getActiveTheme() === DARK_THEME ? LIGHT_THEME : DARK_THEME;
+    applyTheme(nextTheme, true);
+  });
+</script>

@@ -1,45 +1,41 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 
-const projects = [
-  {
-    title: "Criticality-Aware Motion Planning",
-    description:
-      "Transformer-based trajectory scoring for autonomous vehicles using heterogeneous GNN criticality context.",
-    tags: ["Python", "Deep Learning", "GNN", "Motion Planning"],
-    href: "#",
-  },
-  {
-    title: "Personal Home Server Infrastructure",
-    description:
-      "Self-hosted infrastructure with Proxmox, Docker, Caddy, HTTPS, DNS, and service hosting.",
-    tags: ["Proxmox", "Docker", "Caddy", "DevOps"],
-    href: "/homelab",
-  },
-  {
-    title: "Scientific Computing with GANs and VAEs",
-    description:
-      "Research seminar project investigating generative models as surrogate models for solving complex PDEs.",
-    tags: ["GANs", "VAEs", "Scientific Computing", "Research"],
-    href: "#",
-  },
-];
+const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+
+const featured = projects.filter((project) => project.data.status === "Featured");
+const selected = projects.filter((project) => project.data.status !== "Featured");
 ---
 
 <BaseLayout title="Projects">
-  <section class="mb-10">
-    <p class="text-sm font-semibold uppercase tracking-wider text-primary">Selected work</p>
-    <h1 class="mt-2 text-4xl font-bold">Projects</h1>
-    <p class="mt-4 max-w-2xl text-base-content/70">
-      A collection of academic, professional, and self-hosting projects focused on software engineering,
-      machine learning, autonomous systems, and infrastructure.
+  <section class="page-section pt-10">
+    <p class="section-label">Selected work</p>
+    <h1 class="section-title">Projects</h1>
+    <p class="muted mt-4 max-w-3xl text-lg leading-8">
+      A focused collection of academic, infrastructure, software, graphics, and frontend projects.
+      The strongest entries are documented as short case studies.
     </p>
   </section>
 
-  <section class="grid gap-6 md:grid-cols-2">
-    {projects.map((project) => (
-      <ProjectCard {...project} />
-    ))}
+  <section class="page-section pt-4">
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold tracking-tight">Featured</h2>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {featured.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold tracking-tight">More projects</h2>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {selected.map((project) => <ProjectCard project={project} />)}
+    </div>
   </section>
 </BaseLayout>

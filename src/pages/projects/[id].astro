@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HomelabArchitecture from "../../components/HomelabArchitecture.astro";
+import ThesisHighlights from "../../components/ThesisHighlights.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={project.data.title} description={project.data.description}>
+  <article class="page-section pt-10">
+    <a href="/projects" class="text-base text-primary hover:underline">← Back to projects</a>
+
+    <header class="mt-8 max-w-4xl">
+      <p class="section-label">{project.data.category}</p>
+      <h1 class="section-title">{project.data.title}</h1>
+      <p class="muted mt-5 text-xl leading-9">{project.data.description}</p>
+
+      <div class="mt-6 flex flex-wrap gap-2">
+        {project.data.tags.map((tag) => <span class="soft-tag">{tag}</span>)}
+      </div>
+
+      {
+        (project.data.repo || project.data.demo) && (
+          <div class="mt-8 flex flex-wrap gap-3">
+            {project.data.repo && (
+              <a href={project.data.repo} class="btn btn-outline" target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+            )}
+            {project.data.demo && (
+              <a href={project.data.demo} class="btn btn-primary" target="_blank" rel="noreferrer">
+                Live demo
+              </a>
+            )}
+          </div>
+        )
+      }
+    </header>
+
+    {project.id === "homelab" && <HomelabArchitecture />}
+    {project.id === "criticality-aware-motion-planning" && <ThesisHighlights />}
+
+    <!-- <div
+      class="prose prose-lg mt-12 max-w-4xl text-base-content prose-headings:text-base-content prose-p:text-base-content/75 prose-li:text-base-content/75 prose-strong:text-base-content"
+    >
+      <Content />
+    </div> -->
+    <div class="article-prose mt-12">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

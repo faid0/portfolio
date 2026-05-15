@@ -1,0 +1,82 @@
+<section class="not-prose my-10 space-y-8">
+  <div>
+    <h2 class="text-2xl font-semibold tracking-tight">Network route</h2>
+    <p class="muted mt-2 max-w-3xl">
+      Public traffic enters through the reverse proxy. Internal services stay behind the Proxmox
+      firewall and are only reachable where explicitly allowed.
+    </p>
+  </div>
+
+  <div class="grid gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-center">
+    <div class="card border border-base-300 bg-base-100 shadow-sm">
+      <div class="card-body">
+        <div class="badge badge-primary badge-outline">Public entry</div>
+        <h3 class="card-title mt-2">Domain</h3>
+        <p class="text-base-content/75">
+          Public HTTPS requests arrive through the configured domain.
+        </p>
+      </div>
+    </div>
+
+    <div class="hidden text-3xl text-base-content/40 lg:block">→</div>
+
+    <div class="card border border-base-300 bg-base-100 shadow-sm">
+      <div class="card-body">
+        <div class="badge badge-primary badge-outline">Reverse proxy CT</div>
+        <h3 class="card-title mt-2">Caddy</h3>
+        <p class="text-base-content/75">Routes selected domains to internal services.</p>
+      </div>
+    </div>
+
+    <div class="hidden text-3xl text-base-content/40 lg:block">→</div>
+
+    <div class="card border border-base-300 bg-base-100 shadow-sm">
+      <div class="card-body">
+        <div class="badge badge-primary badge-outline">Application host</div>
+        <h3 class="card-title mt-2">Docker VM</h3>
+        <p class="text-base-content/75">Runs containerized application workloads.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div>
+    <h2 class="text-2xl font-semibold tracking-tight">Infrastructure layout</h2>
+    <p class="muted mt-2 max-w-3xl">
+      The setup separates services, application workloads, storage tiers and network access.
+    </p>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div class="card border border-base-300 bg-base-100 shadow-sm">
+      <div class="card-body">
+        <div class="badge badge-ghost">Compute</div>
+        <h3 class="card-title mt-2">4 CTs · 1 VM</h3>
+        <p class="text-base-content/75">
+          Dedicated containers for core services and one VM for Docker-based workloads.
+        </p>
+      </div>
+    </div>
+
+    <div class="card border border-base-300 bg-base-100 shadow-sm">
+      <div class="card-body">
+        <div class="badge badge-ghost">Storage</div>
+        <h3 class="card-title mt-2">SSD + ZFS mirror</h3>
+        <p class="text-base-content/75">
+          SSDs for fast-access data and mirrored HDDs for long-term persistent storage.
+        </p>
+      </div>
+    </div>
+
+    <div class="card border border-base-300 bg-base-100 shadow-sm">
+      <div class="card-body">
+        <div class="badge badge-ghost">Security</div>
+        <h3 class="card-title mt-2">Firewall isolated</h3>
+        <p class="text-base-content/75">
+          Proxmox firewall rules restrict communication between systems.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,55 +1,144 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const experience = [
+type TimelineItem = {
+  title: string;
+  place: string;
+  period: string;
+  points: string[];
+};
+
+type TimelineSection = {
+  title: string;
+  items: TimelineItem[];
+};
+
+const sections: TimelineSection[] = [
   {
-    role: "Working Student, Software Developer",
-    company: "H&D GmbH",
-    period: "09/2024 - 04/2026",
-    points: [
-      "Developed backend features and microservices using Java and Rust.",
-      "Built REST, GraphQL, and gRPC APIs.",
-      "Worked with PostgreSQL, MongoDB, TypeScript, Vue, Keycloak, Docker, and Kubernetes.",
+    title: "Professional experience",
+    items: [
+      {
+        title: "Working Student, Software Developer",
+        place: "H&D GmbH",
+        period: "09/2024 – 04/2026",
+        points: [
+          "Developed backend features and microservices using Java and Rust.",
+          "Built and integrated REST, GraphQL, and gRPC APIs.",
+          "Worked with PostgreSQL, MongoDB, TypeScript, Vue, Keycloak, Docker, and Kubernetes.",
+        ],
+      },
+      {
+        title: "Technical Associate",
+        place: "Goldn Kiosk",
+        period: "06/2021 – 09/2024",
+        points: [
+          "Built the company’s first website.",
+          "Implemented custom accounting software for business operations.",
+          "Supported POS systems, billing, inventory, and technical troubleshooting.",
+        ],
+      },
+      {
+        title: "Banking Intern",
+        place: "Commerzbank",
+        period: "10/2019 – 03/2020",
+        points: [
+          "Supported customers with consultations, transactions, and banking services.",
+          "Built communication and client-facing experience in a professional environment.",
+        ],
+      },
     ],
   },
   {
-    role: "Technical Associate",
-    company: "Goldn Kiosk",
-    period: "06/2021 - 09/2024",
-    points: [
-      "Built the company's first website.",
-      "Developed custom accounting software.",
-      "Supported POS systems, billing, inventory, and technical troubleshooting.",
+    title: "Education",
+    items: [
+      {
+        title: "M.Sc. Informatics",
+        place: "Technical University of Munich",
+        period: "04/2026 – expected 03/2028",
+        points: ["Current master’s program in Informatics."],
+      },
+      {
+        title: "B.Sc. Informatics",
+        place: "Technical University of Munich",
+        period: "10/2022 – 03/2026",
+        points: ["Application focus: Medicine.", "Final grade: 2.1."],
+      },
+    ],
+  },
+  {
+    title: "Academic work",
+    items: [
+      {
+        title: "Bachelor Thesis",
+        place: "Criticality-Aware Motion Planning",
+        period: "2026",
+        points: [
+          "Developed a Transformer-based trajectory scoring model for autonomous-vehicle motion planning.",
+          "Integrated scenario-level criticality context from a heterogeneous GNN.",
+          "Evaluated the model on 845 CommonRoad scenarios.",
+        ],
+      },
+      {
+        title: "Practical Course",
+        place: "Motion Planning for Autonomous Vehicles",
+        period: "2026",
+        points: [
+          "Led a team of three students.",
+          "Implemented a logic-based path-planning approach in Python.",
+        ],
+      },
+      {
+        title: "Seminar",
+        place: "High Dimensional Methods in Scientific Computing",
+        period: "2026",
+        points: [
+          "Worked on a seminar paper about GANs and VAEs as surrogate models for complex PDEs.",
+        ],
+      },
     ],
   },
 ];
 ---
 
 <BaseLayout title="Experience">
-  <section class="mb-10">
-    <p class="text-sm font-semibold uppercase tracking-wider text-primary">Professional background</p>
-    <h1 class="mt-2 text-4xl font-bold">Experience</h1>
+  <section class="page-section pt-10">
+    <p class="section-label">Background</p>
+    <h1 class="section-title">Experience & Education</h1>
+    <p class="muted mt-4 max-w-3xl text-lg leading-8">
+      Professional software development, university studies at TUM, and academic projects in
+      autonomous systems, machine learning, and scientific computing.
+    </p>
   </section>
 
-  <section class="space-y-6">
-    {experience.map((item) => (
-      <article class="card bg-base-200">
-        <div class="card-body">
-          <div class="flex flex-col justify-between gap-2 md:flex-row">
-            <div>
-              <h2 class="card-title">{item.role}</h2>
-              <p class="text-primary">{item.company}</p>
-            </div>
-            <p class="text-sm text-base-content/60">{item.period}</p>
-          </div>
+  <section class="space-y-14">
+    {
+      sections.map((section) => (
+        <div>
+          <h2 class="mb-5 text-2xl font-semibold tracking-tight">{section.title}</h2>
 
-          <ul class="mt-4 list-disc space-y-2 pl-5 text-base-content/70">
-            {item.points.map((point) => (
-              <li>{point}</li>
+          <div class="space-y-4">
+            {section.items.map((item) => (
+              <article class="surface-card">
+                <div class="surface-card-body">
+                  <div class="flex flex-col justify-between gap-2 md:flex-row md:items-start">
+                    <div>
+                      <h3 class="text-xl font-semibold">{item.title}</h3>
+                      <p class="mt-1 text-base text-base-content/70">{item.place}</p>
+                    </div>
+                    <p class="text-sm text-base-content/60 md:text-right">{item.period}</p>
+                  </div>
+
+                  <ul class="mt-5 list-disc space-y-2 pl-5 text-base leading-7 text-base-content/75">
+                    {item.points.map((point) => (
+                      <li>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
             ))}
-          </ul>
+          </div>
         </div>
-      </article>
-    ))}
+      ))
+    }
   </section>
 </BaseLayout>

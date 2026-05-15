@@ -14,23 +14,35 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" data-theme="night">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | Faid Rihan</title>
+
+    <script is:inline>
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme) {
+        document.documentElement.setAttribute("data-theme", storedTheme);
+      }
+    </script>
   </head>
 
-  <body class="min-h-screen bg-base-100 text-base-content">
+  <body class="min-h-screen bg-base-100 text-base-content antialiased">
     <Navbar />
 
-    <main class="mx-auto w-full max-w-6xl px-4 py-10 md:px-6">
+    <main class="mx-auto w-full max-w-7xl px-5 py-8 md:px-8">
       <slot />
     </main>
 
-    <footer class="border-t border-base-300 px-4 py-8 text-center text-sm text-base-content/60">
-      © {new Date().getFullYear()} Faid Rihan. Built with Astro, Tailwind CSS and daisyUI.
+    <footer
+      class="mx-auto max-w-7xl border-t border-base-300 px-5 py-8 text-base text-base-content/60 md:px-8"
+    >
+      <div class="flex flex-col justify-between gap-3 md:flex-row">
+        <p>© {new Date().getFullYear()} Faid Rihan</p>
+        <p>Built with Astro, Tailwind CSS and daisyUI.</p>
+      </div>
     </footer>
   </body>
 </html>

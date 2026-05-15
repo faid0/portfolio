@@ -1,2 +1,60 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+@plugin "@tailwindcss/typography";
+
+@plugin "daisyui" {
+  themes:
+    corporate --default,
+    dark --prefersdark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
+}
+
+@layer components {
+  .page-section {
+    @apply py-10 md:py-14;
+  }
+
+  .section-label {
+    @apply text-sm font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+
+  .section-title {
+    @apply mt-3 text-4xl font-bold tracking-tight md:text-5xl;
+  }
+
+  .muted {
+    @apply text-base-content/75;
+  }
+
+  .surface-card {
+    @apply card border border-base-300 bg-base-100 shadow-sm;
+  }
+
+  .surface-card-body {
+    @apply card-body;
+  }
+
+  .soft-tag {
+    @apply badge badge-outline;
+  }
+
+  .article-prose {
+    @apply prose prose-lg max-w-4xl text-base-content
+      prose-headings:text-base-content
+      prose-p:text-base-content/75
+      prose-li:text-base-content/75
+      prose-strong:text-base-content
+      prose-table:text-base-content
+      prose-th:text-base-content
+      prose-td:text-base-content/75;
+  }
+}
