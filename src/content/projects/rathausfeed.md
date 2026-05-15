@@ -6,7 +6,6 @@ status: "Selected"
 date: "2025"
 tags: ["Backend", "TypeScript", "React", "Python", "AI", "Hackathon"]
 repo: "https://github.com/faid0/RathausFeed"
-demo: "https://faid0.github.io"
 featured: false
 order: 4
 ---
@@ -16,6 +15,8 @@ order: 4
 RathausFeed was built at HackaTUM 2025 for the City of Munich / IT-Referat challenge.
 
 The project turns complex official city documents into a more accessible digital noticeboard for citizens.
+
+![RathausFeed interface screenshot](/projects/rathausfeed.png)
 
 ## Problem
 
