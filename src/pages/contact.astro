@@ -1,20 +1,55 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const links = [
+  {
+    label: "Email",
+    value: "faid.r03@gmail.com",
+    href: "mailto:faid.r03@gmail.com",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/faid0",
+    href: "https://github.com/faid0",
+  },
+  {
+    label: "LinkedIn",
+    value: "LinkedIn profile",
+    href: "https://de.linkedin.com/in/faid-rihan-24b336254",
+  },
+];
 ---
 
 <BaseLayout title="Contact">
-  <section class="page-section max-w-2xl pt-10">
-    <p class="section-label">Get in touch</p>
-    <h1 class="section-title">Contact</h1>
+  <section class="page-section pt-8 md:pt-14">
+    <div class="max-w-3xl">
+      <p class="section-label">Contact</p>
+      <h1 class="section-title">Get in touch</h1>
 
-    <p class="muted mt-5 text-lg leading-8">
-      I'm based in Munich and open to software engineering, backend, full-stack, machine learning,
-      and infrastructure-related opportunities.
-    </p>
+      <p class="muted mt-6 text-lg leading-8">
+        I'm based in Munich and open to conversations around software engineering, backend systems,
+        infrastructure, applied machine learning, and student or working-student opportunities.
+      </p>
+    </div>
+  </section>
 
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a href="mailto:faid.r03@gmail.com" class="btn btn-primary">Email me</a>
-      <a href="https://github.com/faid0" class="btn btn-outline">GitHub</a>
+  <section class="page-section pt-0">
+    <div class="grid gap-4 md:grid-cols-3">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+            class="surface-card transition hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
+          >
+            <div class="surface-card-body">
+              <p class="text-sm font-medium text-primary">{link.label}</p>
+              <p class="mt-2 break-words text-base font-medium text-base-content">{link.value}</p>
+            </div>
+          </a>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>

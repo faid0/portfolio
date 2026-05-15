@@ -33,7 +33,7 @@ The prototype includes ideas such as:
 - summarized updates about city planning, decisions, and debates
 - tags and filters for topics such as mobility, housing, climate, and youth
 - discussion threads for citizen feedback
-- a children’s view for schools and educational settings
+- a children's view for schools and educational settings
 - pointers to participation options when available
 
 ## My contribution
